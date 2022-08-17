@@ -1,0 +1,246 @@
+﻿@using asp_store_bugeto.Application.Services.Carts.Queries.GetMyCart
+@model NyCartDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-main">
+    <div class="d-block">
+        <div class="main-row">
+            <div id="breadcrumb">
+                <i class="mdi mdi-home"></i>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                        <li class="breadcrumb-item active open" aria-current="page">سبد خرید</li>
+                    </ol>
+                </nav>
+            </div>
+            <section class="cart-home">
+                <div class="post-item-cart d-block order-2">
+                    <div class="content-page">
+                        <div class="cart-form">
+                            <form action="#" class="c-form">
+                                <table class="table-cart cart table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="product-cart-name">نام محصول</th>
+                                            <th scope="col" class="product-cart-price">قیمت</th>
+                                            <th scope="col" class="product-cart-quantity">تعداد مورد نیاز</th>
+                                            <th scope="col" class="product-cart-Total">مجموع</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Items)
+                                        {
+                                            <tr>
+                                                <th scope="row" class="product-cart-name">
+                                                    <div class="product-thumbnail-img">
+                                                        <a href="#">
+                                                            <img id="productimg_@item.ProductId" src="~/@item.ImgSrc">
+                                                        </a>
+                                                        <div class="product-remove">
+                                                            <a onclick="RemoveCartItem(@item.ProductId,@Model.CartId)" class="remove">
+                                                                <i class="mdi mdi-close"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-title">
+                                                        <a href="~/products/@item.ProductId">
+                                                            @item.ProductName
+                                                        </a>
+
+                                                    </div>
+                                                </th>
+                                                <td class="product-cart-price">
+                                                    <span class="amount" id="productprice_@item.ProductId">
+                                                        @item.Price.ToString("n0")
+                                                        <span>تومان</span>
+                                                    </span>
+                                                </td>
+                                                <td class="product-cart-quantity">
+                                                    <div class="required-number before">
+                                                        <div class="quantity">
+                                                            <input type="number" onchange="addtocart(@item.ProductId)" id="ProductCount_@item.ProductId" min="1" max="100" step="1" value="@item.CountItem"><div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="product-cart-Total">
+                                                    <span class="amount" id="producttotalprice_@item.ProductId">
+                                                        @item.Total.ToString("n0")
+                                                        <span>تومان</span>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </form>
+                            <div class="cart-collaterals">
+                                <div class="totals d-block">
+                                    <h3 class="Total-cart-total">مجموع کل سبد خرید</h3>
+                                    <div class="checkout-summary">
+                                        <ul class="checkout-summary-summary">
+                                            <li class="cart-subtotal">
+                                                <span class="amount">قیمت کل</span>
+                                                <span id="totalprice"> @Model.TotalPrice.ToString("n0") تومان</span>
+                                            </li>
+                                            <li class="shipping-totals">
+                                                <span class="amount">حمل و نقل</span>
+                                                <div class="shipping-totals-item">
+
+                                                    <span class="shipping-destination">حمل و نقل معمولی: 20,000 تومان</span>
+                                                </div>
+                                            </li>
+                                            <li class="order-total">
+                                                <span class="amount"> مجموع</span>
+                                                <span id="totalprice2"> @((Model.TotalPrice+20000).ToString("n0")) تومان</span>
+                                            </li>
+                                            <li class="discount-code">
+                                                <div class=" align-items-center">
+                                                    <div class="col-md-7 pr mt-5">
+                                                        <div class="coupon">
+                                                            <form action="#">
+                                                                <input type="text" name="input-coupon" class="input-coupon-code" placeholder="كد تخفیف:">
+                                                                <button class="btn btn-coupon" type="submit">اعمال</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 pl mt-5">
+                                                        <div class="proceed-to-checkout">
+                                                            <a href="#" class="checkout-button d-block">تسویه حساب</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Script{
+    <script src="~/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="~/sweetalert2/sweetalert2.min.css" />
+    <script>
+
+        function separate(Number) {
+            Number += '';
+            Number = Number.replace(',', '');
+            x = Number.split('.');
+            y = x[0];
+            z = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(y))
+                y = y.replace(rgx, '$1' + ',' + '$2');
+            return y + z;
+        }
+        function ProductForEach(item, idx) {
+            $('#productprice_' + item.productId).empty();
+            var price = separate(item.price);
+            var totalprice = separate(item.total);
+            $('#productprice_' + item.productId).html(price + "<span>تومان</span>");
+            $('#ProductCount_' + item.productId).val(item.countItem);
+            $('#producttotalprice_' + item.productId).empty();
+            $('#producttotalprice_' + item.productId).html(totalprice + "<span>تومان</span>");
+            $('#producttotalhead_' + item.productId).empty();
+            $('#producttotalhead_' + item.productId).html(totalprice + "<span>تومان</span>");
+            console.log(item);
+        }
+        function addtocart(id) {
+            var count = document.getElementById('ProductCount_' + id).value;
+            var postdata = {
+                productCount: count,
+                productId: id
+            };
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: "POST",
+                url: "carts/AddToCart",
+                data: postdata,
+                success: function(data) {
+                    if (data.isSuccess == true) {
+                        swal.fire(
+                            'موفق!',
+                            data.message,
+                            'success'
+                        )
+                            .then
+                            (function(isConfirm) {
+                                $.ajax({
+                                    contentType: 'application/x-www-form-urlencoded',
+                                    dataType: 'json',
+                                    type: "POST",
+                                    url: "carts/GetMyCart",
+                                    data: postdata,
+                                    success: function(data) {
+                                        if (data.isSuccess == true) {
+                                            console.log(data);
+                                            $('#totalprice').empty();
+                                            $('#totalprice').html(separate(data.data.totalPrice) + " تومان");
+                                            $('#totalprice2').empty();
+                                            $('#totalprice2').html(separate(data.data.totalPrice + 20000) + " تومان");
+                                            $('#totalcarthead').empty();
+                                            $('#totalcarthead').html(separate(data.data.totalPrice) + "<span>تومان</span>");
+                                            $('#countcarthead').empty();
+                                            $('#countcarthead').html(data.data.countItem);
+                                            $('#totalcartin').empty();
+                                            $('#totalcartin').html(separate(data.data.totalPrice) + "<span>تومان</span>");
+                                            data.data.items.forEach(ProductForEach);
+                                        }
+                                        else {
+                                            swal.fire
+                                                (
+                                                    'هشدار!',
+                                                    data.message,
+                                                    'warning'
+                                                );
+                                        }
+                                    },
+                                    error: function(request, status, error) {
+                                        if (request.responseText != null) {
+                                            alert(request.responseText);
+                                        }
+                                        else {
+                                            alert(error.text);
+                                        }
+                                    }
+
+                                });
+                            }
+                            );
+                    }
+                    else {
+                        swal.fire
+                            (
+                                'هشدار!',
+                                data.message,
+                                'warning'
+                            );
+                    }
+                },
+                error: function(request, status, error) {
+                    if (request.responseText != null) {
+                        alert(request.responseText);
+                    }
+                    else {
+                        alert(error.text);
+                    }
+                }
+
+            });
+        }
+    </script>
+}
+

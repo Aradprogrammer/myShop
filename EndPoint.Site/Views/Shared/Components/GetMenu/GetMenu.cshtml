@@ -1,0 +1,27 @@
+﻿@using asp_store_bugeto.Application.Services.Common.Queries.GetMenuItems;
+@model List<MenuItemDto>;
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <li id="nav-menu-item" class="menu-item nav-overlay">
+        <a href="#" class="current-link-menu">
+            @item.CategoryName
+        </a>
+        @if (item.SubCategories.Count > 0)
+        {
+            <ul class="sub-menu is-mega-menu-small">
+                @foreach (var subitem in item.SubCategories)
+                {
+                    <li class="menu-mega-item menu-item-type-mega-menu item-small">
+                        <a href="~/products?catid=@subitem.CategoryID" class="mega-menu-link">
+                            @subitem.CategoryName
+                        </a>
+                    </li>
+                }
+            </ul>
+
+        }
+    </li>
+}

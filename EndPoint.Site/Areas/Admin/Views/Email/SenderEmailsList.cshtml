@@ -1,0 +1,320 @@
+﻿@addTagHelper * ,Microsoft.AspNetCore.Mvc.TagHelpers
+@using asp_store_bugeto.Application.Services.Emails.Queries.GetSenderEmail;
+@model SendersEmailDto
+@{
+    ViewData["Title"] = "SenderEmailsList";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+ <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Zero configuration table -->
+            <section id="configuration">
+                <div class="row">
+        
+                    <div class="col-12">
+           
+                        <div class="card">
+             
+                            <div class="card-header">
+               
+                                <div class="card-title-wrap bar-success">
+                                    <h4 class="card-title">لیست ارسال کننده ایمیل </h4>
+                                </div>
+                
+                            </div>
+               
+                            <div class="card-body collapse show">
+                   
+                                <div class="card-block card-dashboard">                        
+                                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="dataTables_length" id="DataTables_Table_0_length">
+                                                    <label>نمایش 
+                                                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
+                                                            <option value="10">10</option>
+                                                            <option value="25">25</option>
+                                                            <option value="50">50</option>
+                                                            <option value="100">100</option>
+                                                        </select> 
+                                                        سطر
+                                                    </label>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                            <form action="SenderEmailsList" method="get"style="display:inline;">
+                                                                <label>جستجو:
+                                                                    <input type="search" name="serchkey" id="serchkey" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0">
+                                                                </label>
+                                                                <input class="btn btn-info mine-a-css" type="submit" style="margin:0;" value="جستوجو"/>
+                                                               
+                                                            </form>
+                                                            <button class="btn btn-success mine-a-css" style="margin:0; margin-right:10px;" onclick="AddNewSender()">افزودن</button>
+                                                            </div>
+                                                            </div>
+                                                                </div>
+                                                                <div class="row"><div class="col-sm-12">
+                                                                    
+                                                                    
+                                                                    
+                                                                    <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                         
+                                        <thead>
+                             
+                                        <tr role="row">
+                                            <th class="sorting_asc col-1" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام: activate to sort column descending" >
+                                                شماره
+                                                </th>
+                                                <th class="sorting col-2 " tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="موقعیت: activate to sort column ascending">
+                                                    ایمیل
+
+                                                </th>
+                                                <th class="sorting col-2" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="اداره: activate to sort column ascending" >
+                                               رمز
+                                                </th>
+                                                <th class="sorting col-3" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="اداره: activate to sort column ascending" >
+                                               
+                                                </th>
+                                                </tr>
+                                    </thead>
+                                    <tbody>
+                                                        @foreach(var item in Model.Senders)
+                                                        {
+                                                            <tr role="row" class="odd">
+                                                                <td class="sorting_1">@item.Id </td>
+                                                                <td>@item.Addres</td>
+                                                                <td>@item.Password</td>
+                                                                <td>
+                                                                    <button class="btn btn-info" onclick="EditSender(@item.Id,'@item.Addres','@item.Password')"> ویرایش </button>
+                                                                    <button class="btn btn-danger" onclick="DeletSender(@item.Id)"> حذف </button>
+                                                                 
+                                                                </td>
+                                                            </tr> 
+                                                        }
+                                                       
+                                                        
+                                                     
+                                                    </tbody>
+                           @* <tfoot>
+                                <tr><th rowspan="1" colspan="1">نام</th><th rowspan="1" colspan="1">موقعیت</th><th rowspan="1" colspan="1">اداره</th><th rowspan="1" colspan="1">سن</th><th rowspan="1" colspan="1">تاریخ شروع</th><th rowspan="1" colspan="1">حقوق</th></tr>
+                            </tfoot>*@
+                        </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">نمایش 1 تا 10 از 57 سطرها</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0" class="page-link">بعدی</a></li></ul></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Zero configuration table -->
+
+       </div>
+    </div>
+@section Script{
+   <script src="~/sweetalert2/sweetalert2.min.js"></script>
+   <link rel="stylesheet" href="~/sweetalert2/sweetalert2.min.css" />
+   <script>
+   function AddNewSender(){
+(async () => {
+
+const { value: formValues } = await Swal.fire({
+  title: 'افزودن ارسال کننده',
+  html:
+    '<div class="form-group">'+
+    '<label>ایمیل</label>'+
+    '<input class="form-control border-primary" type="email" id="new-email">'+
+    '</div>'+
+    '<div class="form-group">'+
+    '<label>گذرواژه</label>'+
+    '<input class="form-control border-primary" type="text" id="new-password">'+
+    '</div>',
+  focusConfirm: false,
+  preConfirm: () => {
+    return [
+      document.getElementById('new-email').value,
+      document.getElementById('new-password').value
+    ]
+  }
+})
+
+if (formValues) {
+    var postdata={
+        Email:formValues[0],
+        Password:formValues[1]
+    }
+   $.ajax({
+                       contentType: 'application/x-www-form-urlencoded',
+                       dataType: 'json',
+                       type: "POST",
+                       url: "AddSenderEmail",
+                       data: postdata,
+                       success: function (data) {
+                           if (data.isSuccess == true) {
+                               swal.fire(
+                                   'موفق!',
+                                   data.message,
+                                   'success'
+                               ).then(function (isConfirm) {
+                                   location.reload();
+                               });
+                   
+                   
+                           }
+                           else {
+                   
+                               swal.fire(
+                                   'هشدار!',
+                                   data.message,
+                                   'warning'
+                               ) ;
+                   
+                           }
+                       },
+                       error: function (request, status, error) {
+                           if(request.responseText != null){
+                           alert(request.responseText );
+                           }else{
+                           alert(error.text );}
+                   
+                       }
+                   
+                   });
+}
+
+})()
+   }
+   function EditSender(id,email,password){
+       (async () => {
+
+const { value: formValues } = await Swal.fire({
+  title: 'ویرایش ارسال کننده',
+  html:
+    '<div class="form-group">'+
+    '<label>ایمیل</label>'+
+    '<input value="'+email+'" class="form-control border-primary" type="email" id="edit-email">'+
+    '</div>'+
+    '<div class="form-group">'+
+    '<label>گذرواژه</label>'+
+    '<input value="'+password+'" class="form-control border-primary" type="text" id="edit-password">'+
+    '<input value="'+id+'" class="form-control border-primary" type="hidden" id="edit-id">'+
+    '</div>',
+  focusConfirm: false,
+  preConfirm: () => {
+    return [
+      document.getElementById('edit-email').value,
+      document.getElementById('edit-password').value,
+      document.getElementById('edit-id').value
+    ]
+  }
+})
+
+if (formValues) {
+    var postdata={
+        Id:formValues[2],
+        Email:formValues[0],
+        Password:formValues[1]
+    }
+   $.ajax({
+                       contentType: 'application/x-www-form-urlencoded',
+                       dataType: 'json',
+                       type: "POST",
+                       url: "EditSenderEmail",
+                       data: postdata,
+                       success: function (data) {
+                           if (data.isSuccess == true) {
+                               swal.fire(
+                                   'موفق!',
+                                   data.message,
+                                   'success'
+                               ).then(function (isConfirm) {
+                                   location.reload();
+                               });
+                   
+                   
+                           }
+                           else {
+                   
+                               swal.fire(
+                                   'هشدار!',
+                                   data.message,
+                                   'warning'
+                               ) ;
+                   
+                           }
+                       },
+                       error: function (request, status, error) {
+                           if(request.responseText != null){
+                           alert(request.responseText );
+                           }else{
+                           alert(error.text);
+                           }
+                   
+                       }
+                   
+                   });
+}
+
+})()
+   }
+   function DeletSender(id){
+       Swal.fire({
+  title: 'هشدار',
+  text: "ایا از حذف ارسال کننده مطمئن هستید؟",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'بله',
+  cancelButtonText:'خیر'
+}).then((result) => {
+  if (result.isConfirmed) {
+    var postdata={
+        Id:id
+    }
+   $.ajax({
+                       contentType: 'application/x-www-form-urlencoded',
+                       dataType: 'json',
+                       type: "POST",
+                       url: "DeleteSenderEmail",
+                       data: postdata,
+                       success: function (data) {
+                           if (data.isSuccess == true) {
+                               swal.fire(
+                                   'موفق!',
+                                   data.message,
+                                   'success'
+                               ).then(function (isConfirm) {
+                                   location.reload();
+                               });
+                   
+                   
+                           }
+                           else {
+                   
+                               swal.fire(
+                                   'هشدار!',
+                                   data.message,
+                                   'warning'
+                               ) ;
+                   
+                           }
+                       },
+                       error: function (request, status, error) {
+                           if(request.responseText != null){
+                           alert(request.responseText );
+                           }else{
+                           alert(error.text);
+                           }
+                   
+                       }
+                   
+                   });
+  }
+})
+       
+   }
+   </script>
+
+
+}

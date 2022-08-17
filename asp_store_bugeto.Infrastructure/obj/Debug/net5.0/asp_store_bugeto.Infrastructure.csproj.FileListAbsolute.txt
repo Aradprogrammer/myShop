@@ -1,0 +1,12 @@
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\bin\Debug\net5.0\asp_store_bugeto.Infrastructure.deps.json
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\bin\Debug\net5.0\asp_store_bugeto.Infrastructure.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\bin\Debug\net5.0\asp_store_bugeto.Infrastructure.pdb
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\obj\Debug\net5.0\asp_store_bugeto.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\obj\Debug\net5.0\asp_store_bugeto.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\obj\Debug\net5.0\asp_store_bugeto.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\obj\Debug\net5.0\asp_store_bugeto.Infrastructure.AssemblyInfo.cs
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\obj\Debug\net5.0\asp_store_bugeto.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\obj\Debug\net5.0\asp_store_bugeto.Infrastructure.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\obj\Debug\net5.0\ref\asp_store_bugeto.Infrastructure.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\obj\Debug\net5.0\asp_store_bugeto.Infrastructure.pdb
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Infrastructure\obj\Debug\net5.0\refint\asp_store_bugeto.Infrastructure.dll

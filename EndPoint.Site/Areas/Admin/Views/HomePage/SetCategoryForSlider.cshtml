@@ -1,0 +1,122 @@
+﻿@addTagHelper * ,Microsoft.AspNetCore.Mvc.TagHelpers
+@using EndPoint.Site.Areas.Admin.Models.ViewModels.HomePage
+@model SetCategoryForSliderViewModel
+@{
+    ViewData["Title"] = "SetCategoryForSlider";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <!-- Basic form layout section start -->
+        <section id="horizontal-form-layouts">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-wrap bar-success">
+                                <h4 class="card-title" id="horz-layout-basic">انتخاب دسته بندی برای اسلایدر صفحه اصلی سایت</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="px-3">
+                                <form method="post" class="form form-horizontal">
+                                    <div class="form-body">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="CountItems">تعداد محصولات در اسلایدر : </label>
+                                            <div class="col-md-9">
+                                                <input type="number" id="CountItems" class="form-control" name="CountItems"/>
+                                            </div>
+                                        </div>
+                                       <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="category">دسته بندی : </label>
+                                        <div class="col-md-9">
+                                            <select id="category" name="category" asp-items="@Model.ChildCategory" class="form-control">
+                                                <option value="0" selected="" disabled="">دسته بندی</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="Location">محل قرار گیری : </label>
+                                        <div class="col-md-9">
+                                            <select id="Location" name="Location" asp-items="@Model.SliderLocation" class="form-control">
+                                                <option value="0" selected="" disabled="">محل قرار گیری</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="reset"  class="btn btn-danger mr-1">
+                                            <i class="icon-trash"></i> لغو
+                                        </button>
+                                        <button type="button" id="btn_add" class="btn btn-success">
+                                            <i class="icon-note"></i> ذخیره
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- // Basic form layout section end -->
+    </div>
+</div>
+@section Script{
+    <script src="~/sweetalert2/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="~/sweetalert2/sweetalert2.min.css" />
+    <script>
+        var data = new FormData();
+        $('#btn_add').on('click', function() {
+
+            data.append('CountItem', $('#CountItems').val());
+            data.append('Location', $('#Location').find("option:selected").val());
+            data.append('CatId', $('#category').find("option:selected").val());
+            
+            $.ajax({
+                type: "POST",
+                url: "SetCategoryForSlider",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function(data) {
+                    if (data.isSuccess == true) {
+                        swal.fire(
+                            'موفق!',
+                            data.message,
+                            'success'
+                        ).then(function(isConfirm) {
+                            location.reload();
+                        });
+
+
+                    }
+                    else {
+
+                        swal.fire(
+                            'هشدار!',
+                            data.message,
+                            'warning'
+                        );
+
+                    }
+                },
+                error: function(request, status, error) {
+                    if (request.responseText != null) {
+                        alert(request.responseText);
+                    } else {
+                        alert(error.text);
+                    }
+
+                }
+
+            });
+        });
+    </script>
+}
+

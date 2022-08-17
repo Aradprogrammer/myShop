@@ -1,0 +1,491 @@
+﻿@{
+    ViewData["Title"] = "ProductDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+@using asp_store_bugeto.Application.Services.Products.Queries.GetProductForAdmin;
+@model ProductDto;
+<div class="customstylea">
+    @*اسلاید*@
+    <div class="col-lg-5">
+        <div class="card" style="height:655px">
+            <div class="card-header">
+                <div class="card-title-wrap bar-success">
+                    <h4 class="card-title">تصاویر محصول</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="background-color:#ddd">
+                        <ol class="carousel-indicators">
+                            @*خط های زیر اسلایدر*@
+                            @for (int i = 1; i < Model.Images.Count; i++)
+                            {
+                                @if (i == 1)
+                                {
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                }
+                                <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                            }
+                        </ol>
+                        <div class="carousel-inner grid-hover" role="listbox">
+
+                            @for (int i = 0; i < Model.Images.Count; i++)
+                            {
+
+
+                                @if (i == 0)
+                                {
+                                    <div class="carousel-item active">
+                                        <div class="col-md-12 col-12">
+                                            <figure class="effect-lexi" style="margin:0px;">
+                                                <img src="~/@Model.Images[i].Src">
+                                                <figcaption>
+                                                    <p class="text-center"><i class="fa fa-trash font-large-3" style="margin-bottom:30px;" onclick="deleteimage(@Model.Images[i].ID)"></i></p>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="carousel-item">
+                                        <div class="col-md-12 col-12">
+                                            <figure class="effect-lexi" style="margin:0px;">
+                                                <img src="~/@Model.Images[i].Src">
+                                                <figcaption>
+                                                    <p class="text-center"><i class="fa fa-trash font-large-3" style="margin-bottom:30px;" onclick="deleteimage(@Model.Images[i].ID)"></i></p>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">قبلی</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">بعدی</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*اطلاعات محصول*@
+    <div class="col-lg-7 ">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-warning">
+                    <h4 class="card-title">اطلاعات محصول</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <ul class="no-list-style customstylea">
+                                <li class="mb-2 col-xl-6 heightli200">
+                                    <span class="primary text-bold-500"><h3><i class="fa fa-dropbox"></i>  نام کالا</h3></span>
+                                    <span class="line-height-2 display-block overflow-hidden">@Model.Name</span>
+                                </li>
+                                <li class="mb-2 col-xl-6 heightli200">
+                                    <span class="primary text-bold-500 "><h3><i class="fa fa-shirtsinbulk"></i>  برند کالا</h3></span>
+                                    <span class="line-height-2 display-block overflow-hidden">@Model.Brand</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <ul class="no-list-style customstylea">
+                                <li class="mb-2 col-xl-6 heightli200">
+                                    <span class="primary text-bold-500"><h3><i class="fa fa-list-ul"></i>  دسته بندی کالا</h3></span>
+                                    <span class="line-height-2 display-block overflow-hidden">@Model.Category</span>
+                                </li>
+                                <li class="mb-2 col-xl-6 heightli200">
+                                    <span class="primary text-bold-500"><h3><i class="fa fa-check-square-o"></i>  نمایش کالا</h3></span>
+                                    @if (Model.Displayed)
+                                    {
+                                        <span class="line-height-2 display-block overflow-hidden">نمایش داده شود</span>
+                                    }
+                                    else
+                                    {
+
+                                        <span class="line-height-2 display-block overflow-hidden">نمایش داده نشود</span>
+                                    }
+
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <ul class="no-list-style customstylea">
+                                <li class="mb-2 col-xl-6 heightli200">
+                                    <span class="primary text-bold-500"><h3><i class="fa fa-usd"></i>   قیمت</h3></span>
+                                    <span class="line-height-2 display-block overflow-hidden">@Model.Price</span>
+                                </li>
+                                <li class="mb-2 col-xl-6 heightli200">
+                                    <span class="primary text-bold-500"><h3><i class="fa fa-usd"></i>   موجودی</h3></span>
+                                    <span class="line-height-2 display-block overflow-hidden">@Model.Inventory</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="customstylea">
+    <div class="col-sm-12 ">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title">توضیحات محصول</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="mb-3">
+                        <span class="display-block overflow-hidden">
+                            <p class="textalign">
+                                @Model.Description
+                            </p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="customstylea">
+    <div class="col-sm-12 col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title">ویژگی های محصول</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="mb-3">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="text-right">نام ویژگی</th>
+                                        <th class="text-right">مقدار ویژگی</th>
+                                        <th class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Featurs)
+                                    {
+                                        <tr>
+                                            <th scope="row">
+                                                @item.ID
+                                            </th>
+                                            <td class="text-right">
+                                                @item.Name
+                                            </td>
+                                            <td class="text-right">
+                                                @item.Value
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="btn mr-1 btn-round btn-danger" onclick="deletefeatur(@item.ID)">حذف</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title">عملیات ها</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="block-button">
+                        @if (Model.Displayed)
+                        {
+                            <a class="btn btn-secondary btn-lg btn-block" onclick="displayechang(@Model.ID)">نشان داده نشود</a>
+                        }
+                        else
+                        {
+
+                            <a class="btn btn-success btn-lg btn-block" onclick="displayechang(@Model.ID)">نشان داده شود</a>
+                        }
+
+                        <a class="btn btn-danger btn-lg btn-block" onclick="deleteproduct(@Model.ID)">حذف کالا</a>
+                        <a class="btn btn-primary btn-lg btn-block" href="~/admin/products/editproduct?id=@Model.ID">ویرایش کالا</a>
+                        @* <fieldset disabled="">
+                        <a class="btn btn-secondary mt-2 btn-lg btn-block">دکمه سطح بلوک غیر فعال شده است</a>
+                        </fieldset>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Script{
+    <script src="~/sweetalert2/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="~/sweetalert2/sweetalert2.min.css" />
+
+    <script>
+        function deleteimage(id) {
+            Swal.fire({
+                title: 'حذف عکس',
+                text: "آیا از حذف عکس مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله ',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+
+                    var postData = {
+                        'ImageId': id,
+
+                    };
+
+
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "deleteimage",
+                        data: postData,
+                        success: function(data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function(isConfirm) {
+                                    location.reload();
+                                });
+
+
+                            }
+                            else {
+
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+
+                            }
+                        },
+                        error: function(request, status, error) {
+                            alert(request.responseText);
+                            alert(error.text);
+
+                        }
+
+                    });
+
+                }
+            })
+
+
+        }
+        function deleteproduct(id) {
+
+            Swal.fire({
+                title: 'حذف کالا',
+                text: "آیا از حذف کالا مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله ',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+
+                    var postData = {
+                        'ProductId': id,
+                    };
+
+
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "deleteproduct",
+                        data: postData,
+                        success: function(data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function(isConfirm) {
+                                    window.location = "\.";
+                                });
+
+
+                            }
+                            else {
+
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+
+                            }
+                        },
+                        error: function(request, status, error) {
+                            alert(request.responseText);
+                            alert(error.text);
+
+                        }
+
+                    });
+
+                }
+            })
+
+        }
+        function displayechang(id) {
+            Swal.fire({
+                title: 'اعمال تغییر',
+                text: "آیا از اعمال این تغیر مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله ',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+
+                    var postData = {
+                        'ProductId': id,
+
+                    };
+
+
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "chagedisplaye",
+                        data: postData,
+                        success: function(data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function(isConfirm) {
+                                    location.reload();
+                                });
+
+
+                            }
+                            else {
+
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+
+                            }
+                        },
+                        error: function(request, status, error) {
+                            alert(request.responseText);
+                            alert(error.text);
+
+                        }
+
+                    });
+
+                }
+            })
+
+        }
+        function deletefeatur(id) {
+            Swal.fire({
+                title: 'حذف ویژگی',
+                text: "آیا از حذف ویژگی مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله ',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+
+                    var postData = {
+                        'FeaturId': id,
+
+                    };
+
+
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "deletefeaturs",
+                        data: postData,
+                        success: function(data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function(isConfirm) {
+                                    location.reload();
+                                });
+
+
+                            }
+                            else {
+
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+
+                            }
+                        },
+                        error: function(request, status, error) {
+                            alert(request.responseText);
+                            alert(error.text);
+
+                        }
+
+                    });
+
+                }
+            })
+
+        }
+    </script>
+
+}
+

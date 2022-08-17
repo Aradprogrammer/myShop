@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{28F41095-99F5-4C3B-B5F6-B32BCEC7BEC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{1D3DC432-C70F-4243-928D-9D798F3E1A68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C5575B2E-E4F9-49E4-8C6A-E30CD5C476A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FAD2DC18-B69C-43FC-B491-0BACB23ACF7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A28C3522-1590-4C71-8DD6-B96546245295}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentaion", "Presentaion", "{E0E05007-C9DE-47D1-8685-5F98E4216807}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B402CA32-6FC0-47F2-B62A-DEDE85C33E63}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp_store_bugeto.Domain", "asp_store_bugeto.Domain\asp_store_bugeto.Domain.csproj", "{7086A5A6-8C0A-4058-9C07-CA077AD02F7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp_store_bugeto.Application", "asp_store_bugeto.Application\asp_store_bugeto.Application.csproj", "{A9104544-EAEE-4B3F-B5EF-F687B7372AB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp_store_bugeto.Infrastructure", "asp_store_bugeto.Infrastructure\asp_store_bugeto.Infrastructure.csproj", "{87772E08-CE21-4706-BC9E-C4FFA1425C76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp_store_bugeto.Persistence", "asp_store_bugeto.Persistence\asp_store_bugeto.Persistence.csproj", "{8B13FDB4-03B7-4FFE-93F4-FE701432E387}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp_store_bugeto.Common", "asp_store_bugeto.Common\asp_store_bugeto.Common.csproj", "{62ECF7CA-3C3F-4B8A-B53A-29F03355D0F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndPoint.Site", "EndPoint.Site\EndPoint.Site.csproj", "{B5725E7F-CF46-49F6-96C0-21E6B5A44E18}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp_store_bugeto.Application.Test", "asp_store_bugeto.Application.Test\asp_store_bugeto.Application.Test.csproj", "{1EC51B0F-7F40-440F-9172-942A6C086C3F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7086A5A6-8C0A-4058-9C07-CA077AD02F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7086A5A6-8C0A-4058-9C07-CA077AD02F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7086A5A6-8C0A-4058-9C07-CA077AD02F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7086A5A6-8C0A-4058-9C07-CA077AD02F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9104544-EAEE-4B3F-B5EF-F687B7372AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9104544-EAEE-4B3F-B5EF-F687B7372AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9104544-EAEE-4B3F-B5EF-F687B7372AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9104544-EAEE-4B3F-B5EF-F687B7372AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87772E08-CE21-4706-BC9E-C4FFA1425C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87772E08-CE21-4706-BC9E-C4FFA1425C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87772E08-CE21-4706-BC9E-C4FFA1425C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87772E08-CE21-4706-BC9E-C4FFA1425C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B13FDB4-03B7-4FFE-93F4-FE701432E387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B13FDB4-03B7-4FFE-93F4-FE701432E387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B13FDB4-03B7-4FFE-93F4-FE701432E387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B13FDB4-03B7-4FFE-93F4-FE701432E387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62ECF7CA-3C3F-4B8A-B53A-29F03355D0F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62ECF7CA-3C3F-4B8A-B53A-29F03355D0F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62ECF7CA-3C3F-4B8A-B53A-29F03355D0F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62ECF7CA-3C3F-4B8A-B53A-29F03355D0F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5725E7F-CF46-49F6-96C0-21E6B5A44E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5725E7F-CF46-49F6-96C0-21E6B5A44E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5725E7F-CF46-49F6-96C0-21E6B5A44E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5725E7F-CF46-49F6-96C0-21E6B5A44E18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC51B0F-7F40-440F-9172-942A6C086C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC51B0F-7F40-440F-9172-942A6C086C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC51B0F-7F40-440F-9172-942A6C086C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC51B0F-7F40-440F-9172-942A6C086C3F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FAD2DC18-B69C-43FC-B491-0BACB23ACF7B} = {1D3DC432-C70F-4243-928D-9D798F3E1A68}
+		{A28C3522-1590-4C71-8DD6-B96546245295} = {1D3DC432-C70F-4243-928D-9D798F3E1A68}
+		{E0E05007-C9DE-47D1-8685-5F98E4216807} = {1D3DC432-C70F-4243-928D-9D798F3E1A68}
+		{B402CA32-6FC0-47F2-B62A-DEDE85C33E63} = {1D3DC432-C70F-4243-928D-9D798F3E1A68}
+		{7086A5A6-8C0A-4058-9C07-CA077AD02F7E} = {FAD2DC18-B69C-43FC-B491-0BACB23ACF7B}
+		{A9104544-EAEE-4B3F-B5EF-F687B7372AB2} = {FAD2DC18-B69C-43FC-B491-0BACB23ACF7B}
+		{87772E08-CE21-4706-BC9E-C4FFA1425C76} = {A28C3522-1590-4C71-8DD6-B96546245295}
+		{8B13FDB4-03B7-4FFE-93F4-FE701432E387} = {A28C3522-1590-4C71-8DD6-B96546245295}
+		{62ECF7CA-3C3F-4B8A-B53A-29F03355D0F9} = {B402CA32-6FC0-47F2-B62A-DEDE85C33E63}
+		{B5725E7F-CF46-49F6-96C0-21E6B5A44E18} = {E0E05007-C9DE-47D1-8685-5F98E4216807}
+		{1EC51B0F-7F40-440F-9172-942A6C086C3F} = {C5575B2E-E4F9-49E4-8C6A-E30CD5C476A6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8AA677ED-2476-4969-8D53-CACB1937195C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,329 @@
+﻿@using asp_store_bugeto.Application.Services.Users.Queries.GetUsers
+@model ReslutGetUserDto;
+@{
+    ViewData["Title"] = "لیست کاربران";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Zero configuration table -->
+            <section id="configuration">
+                <div class="row">
+        
+                    <div class="col-12">
+           
+                        <div class="card">
+             
+                            <div class="card-header">
+               
+                                <div class="card-title-wrap bar-success">
+                
+                                    <h4 class="card-title">لیست کاربران</h4>
+                 
+                                </div>
+                
+                            </div>
+               
+                            <div class="card-body collapse show">
+                   
+                                <div class="card-block card-dashboard">                        
+                                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="dataTables_length" id="DataTables_Table_0_length">
+                                                    <label>نمایش 
+                                                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
+                                                            <option value="10">10</option>
+                                                            <option value="25">25</option>
+                                                            <option value="50">50</option>
+                                                            <option value="100">100</option>
+                                                        </select> 
+                                                        سطر
+                                                    </label>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                            <form action="users" method="get">
+                                                               
+                                                            <label>جستجو:
+                                                                <input type="search" name="serchkey" id="serchkey" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0">
+                                                                </label>
+                                                                <input class="btn btn-info mine-a-css" type="submit" style="margin:0;" value="جستوجو"/>
+                                                                </form>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                <div class="row"><div class="col-sm-12"><table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                         
+                                        <thead>
+                             
+                                        <tr role="row">
+                                            <th class="sorting_asc col-3" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام: activate to sort column descending" >
+                                                نام
+                                                </th>
+                                                <th class="sorting " tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="موقعیت: activate to sort column ascending">
+                                                    ایمیل
+
+                                                </th>
+                                                <th class="sorting col-4" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="اداره: activate to sort column ascending" >
+                                                </th>
+                                                </tr>
+                                    </thead>
+                                    <tbody>
+                                                        @foreach(var item in Model.Users)
+                                                        {
+                                                            <tr role="row" class="odd">
+                                                                <td class="sorting_1">@item.FullName </td>
+                                                                <td>@item.Email</td>
+                                                                <td>
+                                                                    <button onclick="ShoewModalEditeUser(@item.Id , '@item.FullName')" class="btn btn-info">ویرایش</button>
+                                                                    <button onclick="DeleteUser(@item.Id)" class="btn btn-danger">حذف</button>
+                                                                @if (@item.IsActive)
+                                                                {
+                                                                    <button onclick="UserChengeStatus(@item.Id)" class="btn btn-warning">غیر فعال</button>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <button onclick="UserChengeStatus(@item.Id)" class="btn btn-info">فعال</button>    
+                                                                }
+                                                                    </td>
+                                                            </tr> 
+                                                        }
+                                                       
+                                                        
+                                                     
+                                                    </tbody>
+                           @* <tfoot>
+                                <tr><th rowspan="1" colspan="1">نام</th><th rowspan="1" colspan="1">موقعیت</th><th rowspan="1" colspan="1">اداره</th><th rowspan="1" colspan="1">سن</th><th rowspan="1" colspan="1">تاریخ شروع</th><th rowspan="1" colspan="1">حقوق</th></tr>
+                            </tfoot>*@
+                        </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">نمایش 1 تا 10 از 57 سطرها</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0" class="page-link">بعدی</a></li></ul></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Zero configuration table -->
+
+       </div>
+    </div>
+@section Script{
+            <script src="~/sweetalert2/sweetalert2.min.js"></script>
+            <link rel="stylesheet" href="~/sweetalert2/sweetalert2.min.css" />
+           
+            
+            <script>
+
+
+                function DeleteUser(UserID){
+                                             Swal.fire({
+					                                    	title: 'حذف کاربر',
+                                                            text: "آیا از حذف کاربر مطمئن هستید؟",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'بله ',
+                                                            cancelButtonText: 'خیر'
+			                                            }).then((result) => {
+                                                                            if (result.value) {
+                                                                                
+                                                                                var postData = {
+                                                                                    'UserId':UserID ,
+                                                                                   
+                                                                                };
+                                                                                
+                                                              
+                                                                                $.ajax({
+                                                                                    contentType: 'application/x-www-form-urlencoded',
+                                                                                    dataType: 'json',
+                                                                                    type: "POST",
+                                                                                    url: "users/delete",
+                                                                                    data: postData,
+                                                                                    success: function (data) {
+                                                                                        if (data.isSuccess == true) {
+                                                                                            swal.fire(
+                                                                                                'موفق!',
+                                                                                                data.message,
+                                                                                                'success'
+                                                                                            ).then(function (isConfirm) {
+                                                                                                location.reload();
+                                                                                            });
+                                                              
+                                                              
+                                                                                        }
+                                                                                        else {
+                                                              
+                                                                                            swal.fire(
+                                                                                                'هشدار!',
+                                                                                                data.message,
+                                                                                                'warning'
+                                                                                            ) ;
+                                                              
+                                                                                        }
+                                                                                    },
+                                                                                    error: function (request, status, error) {
+                                                                                        alert(request.responseText );
+                                                                                        alert(error.text );
+                                                              
+                                                                                    }
+                                                              
+                                                                                });
+                                                              
+                                                                                                                   }
+                                                                                                         })
+                                              } 
+
+                function UserChengeStatus(userId){
+                                                     Swal.fire({
+					                                    	title: 'تغییر وضعیت کاربر',
+                                                            text: "آیا از تغییر وضعیت کاربر مطمئن هستید؟",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'بله ',
+                                                            cancelButtonText: 'خیر'
+			                                            }).then((result) => {
+                                                                            if (result.value) {
+                                                                                
+                                                                                var postData = {
+                                                                                    'userId':userId ,
+                                                                                   
+                                                                                };
+                                                                                
+                                                              
+                                                                                $.ajax({
+                                                                                    contentType: 'application/x-www-form-urlencoded',
+                                                                                    dataType: 'json',
+                                                                                    type: "POST",
+                                                                                    url: "users/changestate",
+                                                                                    data: postData,
+                                                                                    success: function (data) {
+                                                                                        if (data.isSuccess == true) {
+                                                                                            swal.fire(
+                                                                                                'موفق!',
+                                                                                                data.message,
+                                                                                                'success'
+                                                                                            ).then(function (isConfirm) {
+                                                                                                location.reload();
+                                                                                            });
+                                                              
+                                                              
+                                                                                        }
+                                                                                        else {
+                                                              
+                                                                                            swal.fire(
+                                                                                                'هشدار!',
+                                                                                                data.message,
+                                                                                                'warning'
+                                                                                            ) ;
+                                                              
+                                                                                        }
+                                                                                    },
+                                                                                    error: function (request, status, error) {
+                                                                                        if(request.responseText != null){
+                                                                                        alert(request.responseText );
+                                                                                        }else{
+                                                                                        alert(error.text );}
+                                                              
+                                                                                    }
+                                                              
+                                                                                });
+                                                              
+                                                                                                                   }
+                                                                                                         })
+
+                                                      }
+           
+                function ShoewModalEditeUser(UserId, Fullname){
+
+                    
+                    $('#User_Name').val(Fullname)
+                    $('#User_Id').val(UserId)
+                    $('#EditUser').modal('show');
+                                                             }
+
+                function EditeUser(){
+                   var fullname= $('#User_Name').val();
+                   var userid= $('#User_Id').val();
+                   var postdata={
+                       'fullname':fullname,
+                       'userid':userid,
+                   }
+                   $.ajax({
+                                                                                    contentType: 'application/x-www-form-urlencoded',
+                                                                                    dataType: 'json',
+                                                                                    type: "POST",
+                                                                                    url: "users/EditeUser",
+                                                                                    data: postdata,
+                                                                                    success: function (data) {
+                                                                                        if (data.isSuccess == true) {
+                                                                                            swal.fire(
+                                                                                                'موفق!',
+                                                                                                data.message,
+                                                                                                'success'
+                                                                                            ).then(function (isConfirm) {
+                                                                                                location.reload();
+                                                                                            });
+                                                              
+                                                              
+                                                                                        }
+                                                                                        else {
+                                                              
+                                                                                            swal.fire(
+                                                                                                'هشدار!',
+                                                                                                data.message,
+                                                                                                'warning'
+                                                                                            ) ;
+                                                              
+                                                                                        }
+                                                                                    },
+                                                                                    error: function (request, status, error) {
+                                                                                        if(request.responseText != null){
+                                                                                        alert(request.responseText );
+                                                                                        }else{
+                                                                                        alert(error.text );}
+                                                              
+                                                                                    }
+                                                              
+                                                                                });
+
+                                     }                                      
+            </script>
+            }
+
+@section Modals {
+                 <div class="modal fade text-left" id="EditUser" tabindex="-1" role="dialog" aria-labelledby="EditUser" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <label class="modal-title text-text-bold-600" id="EditUser">ویرایش کاربر</label>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form action="#">
+                            <div class="modal-body">
+                          <label>نام کاربری :</label>
+                          <div class="form-group">
+                            <input type="text" id="User_Name" placeholder="نام کاربری" class="form-control">
+                          </div>
+
+                         
+                          <div class="form-group">
+                            <input type="hidden" id="User_Id"  class="form-control">
+                          </div>
+                          </div>
+                          <div class="modal-footer">
+                          <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="لغو">
+                          <a onclick="EditeUser()" class="btn btn-outline-primary btn-lg" >اعمال</a>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+}
+

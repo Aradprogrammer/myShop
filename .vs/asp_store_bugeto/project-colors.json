@@ -1,0 +1,46 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7086a5a6-8c0a-4058-9c07-ca077ad02f7e": {
+      "ProjectGuid": "7086a5a6-8c0a-4058-9c07-ca077ad02f7e",
+      "DisplayName": "asp_store_bugeto.Domain",
+      "ColorIndex": 0
+    },
+    "a9104544-eaee-4b3f-b5ef-f687b7372ab2": {
+      "ProjectGuid": "a9104544-eaee-4b3f-b5ef-f687b7372ab2",
+      "DisplayName": "asp_store_bugeto.Application",
+      "ColorIndex": 1
+    },
+    "87772e08-ce21-4706-bc9e-c4ffa1425c76": {
+      "ProjectGuid": "87772e08-ce21-4706-bc9e-c4ffa1425c76",
+      "DisplayName": "asp_store_bugeto.Infrastructure",
+      "ColorIndex": 2
+    },
+    "8b13fdb4-03b7-4ffe-93f4-fe701432e387": {
+      "ProjectGuid": "8b13fdb4-03b7-4ffe-93f4-fe701432e387",
+      "DisplayName": "asp_store_bugeto.Persistence",
+      "ColorIndex": 3
+    },
+    "62ecf7ca-3c3f-4b8a-b53a-29f03355d0f9": {
+      "ProjectGuid": "62ecf7ca-3c3f-4b8a-b53a-29f03355d0f9",
+      "DisplayName": "asp_store_bugeto.Common",
+      "ColorIndex": 4
+    },
+    "cbd3e66f-5eae-4875-b08b-ed69e4866b50": {
+      "ProjectGuid": "cbd3e66f-5eae-4875-b08b-ed69e4866b50",
+      "DisplayName": "EndPoint.Site",
+      "ColorIndex": 5
+    },
+    "b5725e7f-cf46-49f6-96c0-21e6b5a44e18": {
+      "ProjectGuid": "b5725e7f-cf46-49f6-96c0-21e6b5a44e18",
+      "DisplayName": "EndPoint.Site",
+      "ColorIndex": 6
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 7
+}

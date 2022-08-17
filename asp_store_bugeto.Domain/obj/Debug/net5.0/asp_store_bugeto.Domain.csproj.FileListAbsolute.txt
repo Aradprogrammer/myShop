@@ -1,0 +1,12 @@
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\bin\Debug\net5.0\asp_store_bugeto.Domain.deps.json
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\bin\Debug\net5.0\asp_store_bugeto.Domain.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\bin\Debug\net5.0\asp_store_bugeto.Domain.pdb
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\obj\Debug\net5.0\asp_store_bugeto.Domain.csproj.AssemblyReference.cache
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\obj\Debug\net5.0\asp_store_bugeto.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\obj\Debug\net5.0\asp_store_bugeto.Domain.AssemblyInfoInputs.cache
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\obj\Debug\net5.0\asp_store_bugeto.Domain.AssemblyInfo.cs
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\obj\Debug\net5.0\asp_store_bugeto.Domain.csproj.CoreCompileInputs.cache
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\obj\Debug\net5.0\asp_store_bugeto.Domain.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\obj\Debug\net5.0\ref\asp_store_bugeto.Domain.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\obj\Debug\net5.0\asp_store_bugeto.Domain.pdb
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Domain\obj\Debug\net5.0\refint\asp_store_bugeto.Domain.dll

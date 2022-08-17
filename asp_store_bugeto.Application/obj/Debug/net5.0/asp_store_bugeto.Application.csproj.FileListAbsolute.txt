@@ -1,0 +1,17 @@
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\bin\Debug\net5.0\asp_store_bugeto.Application.deps.json
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\bin\Debug\net5.0\asp_store_bugeto.Application.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\bin\Debug\net5.0\asp_store_bugeto.Application.pdb
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\bin\Debug\net5.0\asp_store_bugeto.Domain.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\bin\Debug\net5.0\asp_store_bugeto.Domain.pdb
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\asp_store_bugeto.Application.csproj.AssemblyReference.cache
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\asp_store_bugeto.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\asp_store_bugeto.Application.AssemblyInfoInputs.cache
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\asp_store_bugeto.Application.AssemblyInfo.cs
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\asp_store_bugeto.Application.csproj.CoreCompileInputs.cache
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\asp_store_bugeto.Application.csproj.CopyComplete
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\asp_store_bugeto.Application.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\ref\asp_store_bugeto.Application.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\asp_store_bugeto.Application.pdb
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\bin\Debug\net5.0\asp_store_bugeto.Common.dll
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\bin\Debug\net5.0\asp_store_bugeto.Common.pdb
+C:\Users\aradprogrammer\source\repos\asp_store_bugeto\asp_store_bugeto.Application\obj\Debug\net5.0\refint\asp_store_bugeto.Application.dll

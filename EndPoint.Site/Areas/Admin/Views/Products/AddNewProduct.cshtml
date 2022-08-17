@@ -1,0 +1,249 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "AddNewProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title-wrap bar-success">
+                <h4 class="card-title" id="basic-layout-form">افزودن کالا جدید</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="px-3">
+                <form class="form" onreset="resett()" id="FormProduct">
+                    <div class="form-body">
+                        <h4 class="form-section">
+                            <i class="icon-box-seam"></i> اطلاعات کالا
+                        </h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ProductName">نام کالا</label>
+                                    <input type="text" id="ProductName" class="form-control" name="PName">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ProductBrand">برند کالا</label>
+                                    <input type="text" id="ProductBrand" class="form-control" name="PBrand">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ProductPrice">فیمت کالا</label>
+                                    <input type="number" id="ProductPrice" class="form-control" name="PPrice">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ProductInventory">موجودی کالا</label>
+                                    <input type="number" id="ProductInventory" class="form-control" name="PInventory">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ProductCategory">دسته بندی</label>
+                                    <select id="ProductCategory" name="PCategory" class="form-control" asp-items="@ViewBag.Categoreis">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="DiplayeProduct">نمایش داده شود؟</label>
+                                    <input type="checkbox" id="DiplayeProduct" class="form-control"value="true" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ProductImg">تصاویر کالا</label>
+                            <input type="file" accept="image/*" multiple class="form-control-file" id="ProductImg" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ProductDescription">توضیحات کالا</label>
+                            <textarea id="ProductDescription" rows="5" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <h4 class="form-section">
+                        <i class="icon-receipt"></i>مشخصات کالا
+                    </h4>
+
+                    <div class="form-group">
+                        <label for="FeaturesName">نام ویژگی</label>
+                        <input type="text" id="FeaturesName" class="form-control" name="Features_Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="FeaturesValue">مقدار ویژگی</label>
+                        <input type="text" id="FeaturesValue" class="form-control" name="FeaturesValue">
+                    </div>
+                    <button type="button" id="btn-addfeature" class="btn btn-success">
+                        <i class="icon-note"></i> افزودن
+                    </button>
+                    <div class="form-group">
+                        <label>ویژگی های ثبت شده</label>
+                        <table class="table table-striped table-bordered zero-configuration dataTable" id="Table_Features" role="grid">
+                            <thead>
+                                <tr role="row">
+                                    <th>نام ویژگی</th>
+                                    <th>مقدار ویژگی</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="TableTbody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-danger mr-1">
+                            <i class="icon-trash"></i> لغو
+                        </button>
+                        <button type="button" id="btn_add" class="btn btn-success">
+                            <i class="icon-note"></i> ذخیره
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Script{
+    <script src="~/sweetalert2/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="~/sweetalert2/sweetalert2.min.css" />
+    <script>
+
+        function resett() {
+            var Tabel = document.getElementById('TableTbody');
+            var length = Tabel.children.length;
+            for (var i = 0; i < length; i++) {
+                var childer = Tabel.children[0];
+                Tabel.removeChild(childer);
+            }
+        }
+
+
+        $('#btn-addfeature').on('click', function() {
+            var Displaye = $('#FeaturesName').val();
+            var Value = $('#FeaturesValue').val();
+            if (Displaye != '' && Value != '') {
+                $('#TableTbody').append('<tr role="row" class="even"><td>' + Displaye + '</td><td>' + Value + '</td><td>   <button type="button" class="btn btn-danger" id="deletefeatur">حذف</button></td></tr>')
+                $('#FeaturesName').val('');
+                $('#FeaturesValue').val('');
+            }
+
+            else {
+                swal.fire(
+                    'هشدار!',
+                    "نام ویژگی و مقدار ویژگی را باید وارد کنید",
+                    'warning'
+                );
+            }
+        });
+
+
+        $('#Table_Features').on('click', '#deletefeatur', function() {
+            this.closest('tr').remove();
+        });
+
+
+        var data = new FormData();
+        $('#btn_add').on('click', function() {
+            data.append('Name', $('#ProductName').val());
+            data.append('Brand', $('#ProductBrand').val());
+            data.append('Description', $('#ProductDescription').val());
+            data.append('Inventory', $('#ProductInventory').val());
+            data.append('Price', $('#ProductPrice').val());
+            data.append('CategoryID', $('#ProductCategory').find("option:selected").val());
+            data.append('Displayed', $('#DiplayeProduct').is( ":checked" ));
+            var imagesifiles = document.getElementById("ProductImg");
+            if (imagesifiles.files.length > 0) {
+
+                for (var i = 0; i < imagesifiles.files.length; i++) {
+                    data.append('[' + i + '].ProductImages', imagesifiles.files[i]);
+                }
+
+            } else {
+                swal.fire(
+                    'هشدار!',
+                    "لطفا تصاویر کالا را انتخاب کنید.",
+                    'warning'
+                );
+            }
+
+            var featuers = $('#Table_Features tr:gt(0)').map(function() {
+                return {
+                    DisplayeName: $(this.cells[0]).text(),
+                    Value: $(this.cells[1]).text()
+                };
+            }).get();
+
+            $.each(featuers, function(inde, item) {
+                console.log(item.Value);
+                data.append('ProductFeature['+inde+'].DisplayeName', item.DisplayeName);
+                data.append('ProductFeature['+inde+'].Value', item.Value);
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "AddNewProduct",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function(data) {
+                    if (data.isSuccess == true) {
+                        swal.fire(
+                            'موفق!',
+                            data.message,
+                            'success'
+                        ).then(function(isConfirm) {
+                            location.reload();
+                        });
+
+
+                    }
+                    else {
+
+                        swal.fire(
+                            'هشدار!',
+                            data.message,
+                            'warning'
+                        );
+
+                    }
+                },
+                error: function(request, status, error) {
+                    if (request.responseText != null) {
+                        alert(request.responseText);
+                    } else {
+                        alert(error.text);
+                    }
+
+                }
+
+            });
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+}

@@ -1,0 +1,207 @@
+﻿@using asp_store_bugeto.Application.Services.Products.Queries.GetCategores
+@model List<CategoryDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title-wrap bar-success">
+                <h4 class="card-title" id="basic-layout-form">دسته بندی ها</h4>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="card-block">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>نام</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.Id</th>
+                                <td>@item.Name</td>
+
+                                <td>
+                                    <button type="button" class="btn btn-success" onclick="RemoveCategory(@item.Id)">
+                                        <i class="icon-plus-square-fill"></i> حذف
+                                    </button>
+                                    <br />
+                                    <button type="button" class="btn btn-success" onclick="EditCategory(@item.Id,'@item.Name')">
+                                        <i class="icon-plus-square-fill"></i> ویرایش
+                                    </button>
+                                </td>
+                                <td>
+                                    @if (item.Parent == null)
+                                    {
+
+                                        <a href="~/admin/Categories/AddNewCategory?parentId=@item.Id" class="btn btn-success">
+                                            <i class="icon-plus-square-fill"></i> افزودن فرزند
+                                        </a>
+                                        <br />
+                                        @if (item.HasChild)
+                                        {
+                                            <a class="btn btn-success" href="~/admin/Categories?parentId=@item.Id">
+                                                <i class="icon-diagram-3"></i>نمایش فرزندان
+                                            </a>
+                                        }
+
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Script{
+<script src="~/sweetalert2/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="~/sweetalert2/sweetalert2.min.css" />
+<script>
+
+     function EditCategory(Idcategory,Namecategory)
+     {
+
+       (async () => {
+
+    const { value: formValues } = await Swal.fire({
+      title: 'ویرایش دسته بندی',
+      html:
+     '<div class="form-group">'+
+            '<label>نام</label>'+
+            '<input value="'+Namecategory+'"class="form-control border-primary" type="text" id="Name-category">'+
+            '</div>'+
+            '<input type="hidden" value="'+Idcategory+'" id="Id-category">'+
+            '</div> ',
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          document.getElementById('Name-category').value,
+          document.getElementById('Id-category').value
+        ]
+      }
+    })
+
+    if (formValues) {
+     var postdata={
+            Id:formValues[1],
+            Name:formValues[0]
+        }
+       $.ajax({
+                           contentType: 'application/x-www-form-urlencoded',
+                           dataType: 'json',
+                           type: "POST",
+                           url: "Categories/EditCategory",
+                           data: postdata,
+                           success: function (data) {
+                               if (data.isSuccess == true) {
+                                   swal.fire(
+                                       'موفق!',
+                                       data.message,
+                                       'success'
+                                   ).then(function (isConfirm) {
+                                       location.reload();
+                                   });
+
+
+                               }
+                               else {
+
+                                   swal.fire(
+                                       'هشدار!',
+                                       data.message,
+                                       'warning'
+                                   ) ;
+
+                               }
+                           },
+                           error: function (request, status, error) {
+                               if(request.responseText != null){
+                               alert(request.responseText );
+                               }else{
+                               alert(error.text);
+                               }
+
+                           }
+
+                       });
+    }
+
+    })()
+     }
+
+
+
+
+
+     function RemoveCategory(id){
+           Swal.fire({
+      title: 'هشدار',
+      text: "ایا از حذف دسته بندی مطمئن هستید؟",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'بله',
+      cancelButtonText:'خیر'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var postdata={
+            Id:id
+        }
+       $.ajax({
+                           contentType: 'application/x-www-form-urlencoded',
+                           dataType: 'json',
+                           type: "POST",
+                           url: "Categories/DeleteCategory",
+                           data: postdata,
+                           success: function (data) {
+                               if (data.isSuccess == true) {
+                                   swal.fire(
+                                       'موفق!',
+                                       data.message,
+                                       'success'
+                                   ).then(function (isConfirm) {
+                                       location.reload();
+                                   });
+
+
+                               }
+                               else {
+
+                                   swal.fire(
+                                       'هشدار!',
+                                       data.message,
+                                       'warning'
+                                   ) ;
+
+                               }
+                           },
+                           error: function (request, status, error) {
+                               if(request.responseText != null){
+                               alert(request.responseText );
+                               }else{
+                               alert(error.text);
+                               }
+
+                           }
+
+                       });
+      }
+    })
+     }
+
+
+
+</script>
+}
